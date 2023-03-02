@@ -28,9 +28,9 @@ namespace Mission09_murdodav.Infrastructure
         [HtmlAttributeNotBound]
         public ViewContext vc { get; set; }
 
-        // getting a PageInfo object
+        // getting a PageInfo object from page-model="@Model.pageInfo" in Index.cshtml
         public PageInfo PageModel { get; set; }
-
+        // getting the PageAction object from page-model="Index" in Index.cshtml
         public string PageAction { get; set; }
 
         // overriding the general TagHelper class that we're inheriting from
