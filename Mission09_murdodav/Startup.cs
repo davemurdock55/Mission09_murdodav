@@ -12,17 +12,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+// added for the assignment
+using Mission09_murdodav.Models;
 
 namespace Mission09_murdodav
 {
     public class Startup
     {
+        // (this gets its Configuration from the Configuration in the constructor)
+        // I moved this up to better match what Hilton did.
+        public IConfiguration Configuration { get; set; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,6 +38,11 @@ namespace Mission09_murdodav
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            // added for the assignment
+            services.AddDbContext<BookstoreContext>(options =>
+            {
+                options.UseSqlite(Configuration["ConnectionStrings:BookstoreDBConnection"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,9 +69,7 @@ namespace Mission09_murdodav
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
         }

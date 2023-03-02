@@ -13,9 +13,12 @@ namespace Mission09_murdodav.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private BookstoreContext context { get; set; }
+
+        public HomeController(ILogger<HomeController> logger, BookstoreContext temp_context)
         {
             _logger = logger;
+            context = temp_context;
         }
 
         public IActionResult Index()
