@@ -48,7 +48,7 @@ namespace Mission09_murdodav.Infrastructure
             TagBuilder final = new TagBuilder("div");
 
             // for each pagination page we need (as long as i is less than the total number of pages we need (with i starting at 1)
-            for (int i = 1; i < PageModel.TotalPages; i++)
+            for (int i = 1; i <= PageModel.TotalPages; i++)
             {
                 // Building the <a> tag
 
