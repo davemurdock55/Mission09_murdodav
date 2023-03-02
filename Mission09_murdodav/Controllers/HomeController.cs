@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Mission09_murdodav.Models;
+using Mission09_murdodav.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -31,23 +32,33 @@ namespace Mission09_murdodav.Controllers
             // creating a variable called itemsPerPage, (at least initially) set to 5 items per page
             int itemsPerPage = 5;
 
-            // getting the books using the repo's IQueryable "Books" object
-            var books = repo.Books
+            var books = new BooksViewModel
+            {
+
+                // getting the books using the repo's IQueryable "Books" object
+                Books = repo.Books
                 // ordered by BookID
                 .OrderBy(b => b.BookId)
                 // Skip whatever page we're on minus 1 (so don't skip the page we're on, but skip all the pages before that) 
                 // multiplied by the number of items (records) per page 
                 .Skip((pageNum - 1) * itemsPerPage)
                 // get the number of items per page from there on
-                .Take(itemsPerPage);
-            // (if we're on page 3 and we have 5 items per page, we will be skip all the records up to "page" 3
-            // (grouped by "page") and then get the next 5 records
+                .Take(itemsPerPage),
+                // (if we're on page 3 and we have 5 items per page, we will be skip all the records up to "page" 3
+                // (grouped by "page") and then get the next 5 records
 
+
+                PageInfo = new PageInfo
+                {
+                    TotalBooksCount = repo.Books.Count(),
+                    BooksPerPage = itemsPerPage,
+                    CurrentPage = pageNum
+                }
+            };
 
             // returning the Index view and passing the "books" variable (which is an IQueryable of book records)
             return View(books);
         }
-
 
         public IActionResult Privacy()
         {
@@ -61,3 +72,4 @@ namespace Mission09_murdodav.Controllers
         }
     }
 }
+

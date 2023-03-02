@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Mission09_murdodav.Models
 {
-    public partial class Book
+    public class Book
     {
         [Key]
         [Required]
