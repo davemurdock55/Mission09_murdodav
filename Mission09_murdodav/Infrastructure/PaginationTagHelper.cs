@@ -35,6 +35,13 @@ namespace Mission09_murdodav.Infrastructure
 
         // getting the PageAction object from page-model="Index" in Index.cshtml
         public string PageAction { get; set; }
+        
+        // copied from the textbook
+        public bool PageClassesEnabled { get; set; } = false;
+        public string PageClass { get; set; }
+        public string PageClassNormal { get; set; }
+        public string PageClassSelected { get; set; }
+
 
         // overriding the general TagHelper class that we're inheriting from
         // TagHelperContext helps us build the links
@@ -53,21 +60,29 @@ namespace Mission09_murdodav.Infrastructure
                 // Building the <a> tag
 
                 // add a new "<a>" tag inside the <div>
-                TagBuilder tb = new TagBuilder("a");
+                TagBuilder tag = new TagBuilder("a");
 
 
                 // Building our Connection String (our href)
 
                 // as the "href", start by adding the PageAction ("page-action" in the html) with a new page number being equal to the current page number
-                tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                tag.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+
+                // added from the textbook
+                if (PageClassesEnabled)
+                {
+                    tag.AddCssClass(PageClass);
+                    tag.AddCssClass(i == PageModel.CurrentPage
+                        ? PageClassSelected : PageClassNormal);
+                }
 
                 // append the current page number to the href to finish off the <a> tag
-                tb.InnerHtml.Append(i.ToString());
+                tag.InnerHtml.Append(i.ToString());
 
                 // Adding the <a> tag to the main <div>
 
                 // Adding the finished <a> tag to the "final" result (which is the main "div" we are putting all this into)
-                final.InnerHtml.AppendHtml(tb);
+                final.InnerHtml.AppendHtml(tag);
             }
 
             // now that that div is all put together with all the <a> tags added to it, we are going to append it to the TagHelperOutput (tho)
