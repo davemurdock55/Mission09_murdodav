@@ -39,10 +39,14 @@ namespace Mission09_murdodav
             services.AddControllersWithViews();
             services.AddRazorPages();
             // added for the assignment
+            // connecting the DbContext object to the Connection string to connect to the actual database
             services.AddDbContext<BookstoreContext>(options =>
             {
                 options.UseSqlite(Configuration["ConnectionStrings:BookstoreDBConnection"]);
             });
+            // added for the assignment
+            // each Http request will get its own repository object to connect to the database with
+            services.AddScoped<IBookStoreRepository, EFBookStoreRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,6 +76,7 @@ namespace Mission09_murdodav
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
+
         }
     }
 }

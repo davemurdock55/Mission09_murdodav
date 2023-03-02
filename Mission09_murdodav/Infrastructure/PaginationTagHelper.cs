@@ -18,8 +18,10 @@ namespace Mission09_murdodav.Infrastructure
         // This will help us create those dynamic links (has to be created when the object is instantiated, so it's put in the constructor)
         private IUrlHelperFactory uhf;
 
+        // The Constructor (passed an IUrlHelperFactory object called "uhf_temp")
         public PaginationTagHelper(IUrlHelperFactory uhf_temp)
         {
+            // setting that temporary object equal to our uhf variable (of type IUrlHelperFactory)
             uhf = uhf_temp;
         }
 
@@ -30,6 +32,7 @@ namespace Mission09_murdodav.Infrastructure
 
         // getting a PageInfo object from page-model="@Model.pageInfo" in Index.cshtml
         public PageInfo PageModel { get; set; }
+
         // getting the PageAction object from page-model="Index" in Index.cshtml
         public string PageAction { get; set; }
 
@@ -49,7 +52,7 @@ namespace Mission09_murdodav.Infrastructure
             {
                 // Building the <a> tag
 
-                // add a new "a" tag
+                // add a new "<a>" tag inside the <div>
                 TagBuilder tb = new TagBuilder("a");
 
 

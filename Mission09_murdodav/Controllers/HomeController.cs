@@ -13,19 +13,41 @@ namespace Mission09_murdodav.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private BookstoreContext context { get; set; }
+        // creating a variable to hold the "repo" object
+        private IBookStoreRepository repo;
 
-        public HomeController(ILogger<HomeController> logger, BookstoreContext temp_context)
+        // Constructor: passing the temporary repository variable to the constructor (along with the logger stuff)
+        public HomeController(ILogger<HomeController> logger, IBookStoreRepository repo_temp)
         {
+            // setting those temporary variables equal to their object attribute counterparts
+            //(tying them to the instantiated objects)
             _logger = logger;
-            context = temp_context;
+            repo = repo_temp;
         }
 
-        public IActionResult Index()
+        // Index Controller (being passed the pageNum w/ the first page as the default
+        public IActionResult Index(int pageNum = 1)
         {
-            var books = context.Books.ToList();
+            // creating a variable called itemsPerPage, (at least initially) set to 5 items per page
+            int itemsPerPage = 5;
+
+            // getting the books using the repo's IQueryable "Books" object
+            var books = repo.Books
+                // ordered by BookID
+                .OrderBy(b => b.BookId)
+                // Skip whatever page we're on minus 1 (so don't skip the page we're on, but skip all the pages before that) 
+                // multiplied by the number of items (records) per page 
+                .Skip((pageNum - 1) * itemsPerPage)
+                // get the number of items per page from there on
+                .Take(itemsPerPage);
+            // (if we're on page 3 and we have 5 items per page, we will be skip all the records up to "page" 3
+            // (grouped by "page") and then get the next 5 records
+
+
+            // returning the Index view and passing the "books" variable (which is an IQueryable of book records)
             return View(books);
         }
+
 
         public IActionResult Privacy()
         {

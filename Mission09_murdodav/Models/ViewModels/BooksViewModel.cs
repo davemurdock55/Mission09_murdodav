@@ -7,5 +7,7 @@ namespace Mission09_murdodav.Models.ViewModels
 {
     public class BooksViewModel
     {
+
+
     }
 }
