@@ -38,7 +38,7 @@ namespace Mission09_murdodav.Controllers
                 // getting the books using the repo's IQueryable "Books" object
                 Books = repo.Books
                 // ordered by BookID
-                .OrderBy(b => b.BookId)
+                .OrderBy(b => b.Title)
                 // Skip whatever page we're on minus 1 (so don't skip the page we're on, but skip all the pages before that) 
                 // multiplied by the number of items (records) per page 
                 .Skip((pageNum - 1) * itemsPerPage)
