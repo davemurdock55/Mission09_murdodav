@@ -3,22 +3,28 @@
 }
 
 @model List<Book>
+@*@model BooksViewModel*@
 
 <div class="text-center">
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
     <h1 class="display-4">Book Store</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
     @foreach (Book b in Model)
     {
-        <h3>@b.ProjectName</h3>
+        <h3>@b.Title</h3>
         <ul>
-            <li>Project Type: @b.ProjectType</li>
-            <li>Regional Program: @b.ProjectRegionalProgram</li>
-            <li>Impact: @b.ProjectImpact individuals served</li>
-            <li>Project Phase: @b.ProjectPhase</li>
-            <li>Project Status: @b.ProjectFunctionalityStatus</li>
+            <li>ISBN: @b.Isbn</li>
+            <li>Author: @b.Author</li>
+            <li>Publisher: @b.Publisher individuals served</li>
+            <li>Category: @b.Category</li>
+            <li>Classification: @b.Classification</li>
+            <li>Number of Pages: @b.PageCount</li>
+            <li>Price: $@b.Price</li>
         </ul>
-        <br />
     }
 
 </div>

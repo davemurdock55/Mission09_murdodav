@@ -23,7 +23,8 @@ namespace Mission09_murdodav.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var books = context.Books.ToList();
+            return View(books);
         }
 
         public IActionResult Privacy()
