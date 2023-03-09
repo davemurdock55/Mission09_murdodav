@@ -31,7 +31,7 @@
         <li><b>Classification:</b> @Model.Classification</li>
         <li><b>Number of Pages:</b> @Model.PageCount</li>
     </ul>
-       
+      
     <form method="POST" asp-page="/Purchase">
         @*passing the book id as a hidden input*@
         <input type="hidden" asp-for="@Model.BookId" />
@@ -41,10 +41,9 @@
 
 
         @*a button to Add to Cart*@
-        <span class="card-text">
-            <button type="submit" class="btn btn-primary btn-sm float-right">Add to Cart</button>
+        <span class="card-text text-center">
+            <button type="submit" class="btn btn-primary btn-sm float-left">Add to Cart</button>
         </span>
     </form>
-
 </div>
 
