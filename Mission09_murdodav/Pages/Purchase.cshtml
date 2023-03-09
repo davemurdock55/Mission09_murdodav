@@ -11,7 +11,7 @@
         <tr>
             <th>Item</th>
             <th>Quantity</th>
-            <th>Cost</th>
+            <th>Price</th>
             <th>Subtotal</th>
         </tr>
     </thead>
@@ -28,14 +28,14 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3">Total:</td>
-            <td>@Model.cart.CalculateTotal().ToString("c")</td> @*ToString("c") makes it appear as a "currency"*@
+            <td colspan="3"><b>Total:</b></td>
+            <td><b>@Model.cart.CalculateTotal().ToString("c")</b></td> @*ToString("c") makes it appear as a "currency"*@
         </tr>
     </tfoot>
 
 </table>
 
-<div class="text-center">
-    @*a button to return the user back to where they came from by referencing the ReturnUrl in the PurchaseModel for this Razor page *@
-    <a class="btn btn-primary text-white text-center" href="@Model.ReturnUrl">Continue Shopping</a>
-</div>
+    <div class="text-center">
+        @*a button to return the user back to where they came from by referencing the ReturnUrl in the PurchaseModel for this Razor page *@
+        <a class="btn btn-primary text-white" href="@Model.ReturnUrl">Continue Shopping</a>
+    </div>
