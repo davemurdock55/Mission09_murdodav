@@ -1,0 +1,41 @@
+﻿@page
+@model Mission09_murdodav.Pages.PurchaseModel
+@{
+}
+
+
+<h2>Cart</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model.cart.CartItems)
+        {
+            <tr>
+                <td>@i.Book.Title</td>
+                <td>@i.Quantity</td>
+                <td>@i.Book.Price</td>
+                <td>@(i.Quantity * i.Book.Price)</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td>@Model.cart.CalculateTotal().ToString("c")</td> @*ToString("c") makes it appear as a "currency"*@
+        </tr>
+    </tfoot>
+
+</table>
+
+<div class="text-center">
+    @*a button to return the user back to where they came from by referencing the ReturnUrl in the DonateModel for this Razor page *@
+    <a class="btn btn-info text-white" href="@Model.ReturnUrl">Back To Projects</a>
+</div>

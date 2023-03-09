@@ -74,7 +74,7 @@ namespace Mission09_murdodav
             }
             app.UseHttpsRedirection();
 
-            app.UseStaticFiles(); // go to wwwroot first
+            app.UseStaticFiles(); // go to wwwroot first to look for pages
 
             app.UseSession(); // allowing our app to use Session
 
