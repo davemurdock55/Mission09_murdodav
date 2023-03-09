@@ -27,16 +27,17 @@ namespace Mission09_murdodav.Controllers
         }
 
         // Index Controller (being passed the pageNum w/ the first page as the default
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string bookCategory, int pageNum = 1)
         {
             // creating a variable called itemsPerPage, (at least initially) set to 5 items per page
             int itemsPerPage = 10;
 
-            var books = new BooksViewModel
+            var AllViewInfo = new BooksViewModel
             {
 
                 // getting the books using the repo's IQueryable "Books" object
                 Books = repo.Books
+                .Where(b => b.Category == bookCategory || bookCategory == null)
                 // ordered by BookID
                 .OrderBy(b => b.BookId)
                 // Skip whatever page we're on minus 1 (so don't skip the page we're on, but skip all the pages before that) 
@@ -50,15 +51,23 @@ namespace Mission09_murdodav.Controllers
 
                 PageInfo = new PageInfo
                 {
-                    TotalBooksCount = repo.Books.Count(),
+                    TotalBooksCount = (bookCategory == null
+                    ? repo.Books.Count()
+                    : repo.Books.Where(x => x.Category == bookCategory).Count()),
                     BooksPerPage = itemsPerPage,
                     CurrentPage = pageNum
                 }
             };
 
+            IQueryable books = repo.Books
+                    .OrderBy(b => b.Title)
+                    .Skip(itemsPerPage * (pageNum - 1))
+                    .Take(itemsPerPage);
+
             // returning the Index view and passing the "books" variable (which is an IQueryable of book records)
-            return View(books);
+            return View(AllViewInfo);
         }
+
 
         public IActionResult Privacy()
         {

@@ -12,10 +12,13 @@
             <span class="navbar-brand ml-2">BOOK STORE</span>
         </div>
     </header>
+
     <div class="row m-1 p-1">
+
         <div id="categories" class="col-3">
             <vc:categories></vc:categories>
         </div>
+
         <div class="col-9">
             @RenderBody()
         </div>
@@ -26,6 +29,7 @@
             &copy; 2023 - Mission10_murdodav - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
