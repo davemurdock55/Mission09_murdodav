@@ -60,6 +60,8 @@ namespace Mission09_murdodav
             // Added for Mission 11
             services.AddScoped<Cart>(x => SessionCart.GetCart(x));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddScoped<IBookPurchaseRepository, EFBookPurchaseRepository>();
         }
 
 

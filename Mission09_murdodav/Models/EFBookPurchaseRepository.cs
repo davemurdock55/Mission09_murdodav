@@ -16,7 +16,7 @@ namespace Mission09_murdodav.Models
 
         public IQueryable<BookPurchase> BookPurchases => context.BookPurchases.Include(x => x.Lines).ThenInclude(x => x.Book);
 
-        public void SaveDonation(BookPurchase purchase)
+        public void SavePurchase(BookPurchase purchase)
         {
             // get project associated with that particular line
             context.AttachRange(purchase.Lines.Select(x => x.Book));

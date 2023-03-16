@@ -9,7 +9,7 @@ namespace Mission09_murdodav.Models
     {
         IQueryable<BookPurchase> BookPurchases { get; }
 
-        void SaveDonation(BookPurchase purchase);
+        void SavePurchase(BookPurchase purchase);
 
     }
 }
