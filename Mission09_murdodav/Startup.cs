@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 // added for the assignment
 using Mission09_murdodav.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Mission09_murdodav
 {
@@ -55,6 +56,10 @@ namespace Mission09_murdodav
             // adding both of the below to make Session storage work :)
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            // Added for Mission 11
+            services.AddScoped<Cart>(x => SessionCart.GetCart(x));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
 

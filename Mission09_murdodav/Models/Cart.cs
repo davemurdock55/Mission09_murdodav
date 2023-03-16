@@ -12,7 +12,7 @@ namespace Mission09_murdodav.Models
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
 
         // the method to add an item
-        public void AddItem(Book book, int qty)
+        public virtual void AddItem(Book book, int qty)
         {
             // create a new instance of a CartItem called "ItemInCart" (to go see if an instance of that Book "line item" is already in the cart (Items list))
             CartItem ItemInCart = CartItems
@@ -42,6 +42,17 @@ namespace Mission09_murdodav.Models
                 ItemInCart.Quantity += qty;
             }
 
+        }
+
+        public virtual void RemoveItem(Book b)
+        {
+            CartItems.RemoveAll(x => x.Book.BookId == b.BookId);
+        }
+
+        // a method to clear the Cart
+        public virtual void ClearCart()
+        {
+            CartItems.Clear();
         }
 
 
