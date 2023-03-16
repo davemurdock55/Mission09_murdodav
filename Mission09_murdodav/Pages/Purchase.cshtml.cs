@@ -14,19 +14,19 @@ namespace Mission09_murdodav.Pages
         // creating a private instance of our Water Project Repository called "repo"
         private IBookStoreRepository repo { get; set; }
 
-
-        // Constructor (passing a temporary repo to assign to our actual "repo" variable (declared above)
-        public PurchaseModel(IBookStoreRepository temp_repo)
-        {
-            repo = temp_repo;
-        }
-
-
         // making a public instance of the Cart class called "cart"
         public Cart cart { get; set; }
 
         // declaring a ReturnUrl string
         public string ReturnUrl { get; set; }
+
+
+        // Constructor (passing a temporary repo to assign to our actual "repo" variable (declared above)
+        public PurchaseModel(IBookStoreRepository temp_repo, Cart temp_cart)
+        {
+            repo = temp_repo;
+            cart = temp_cart;
+        }
 
 
 
@@ -37,10 +37,6 @@ namespace Mission09_murdodav.Pages
             // if it's null, however, just set the ReturnUrl to the index route ("/")
             ReturnUrl = returnUrl ?? "/";
 
-            // if we go to the Sesion and if there is something in the "cart" key,
-            // turn it back into Json. Otherwise, make a new Cart() object
-            // set the result to our "cart" object variable of type Cart
-            cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart(); ;
         }
 
 
@@ -56,20 +52,17 @@ namespace Mission09_murdodav.Pages
             // that project's ProjectId is equal to the projectID we're receiving in this OnPost() method
             Book b = repo.Books.FirstOrDefault(x => x.BookId == BookId); // Getting the information for that project
 
-            // If the cart already exists, Go to the session and get the string with the "cart" key (and turn it back into Json while we do that)
-            // otherwise, make a new "Cart" object
-            // setting the result to our "cart" object of the Cart class
-            cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-
             // adding 1 quantity's worth of the project ("p") we just found to our Cart object ("cart") we instantiated just above
             cart.AddItem(b, 1);
 
-            // set our updated "cart" object of type "Cart" to the Session string with the "cart" key
-            // (converting it to Json and then a string first in the SetJson method first)
-            HttpContext.Session.SetJson("cart", cart);
-
             // redirecting the user to the OnGet method above, and passing a new ReturnUrl string that is
             // equal to the returnUrl string this OnPost() method is being passed
+            return RedirectToPage(new { ReturnUrl = returnUrl });
+        }
+
+        public IActionResult OnPostRemove(int bookId, string returnUrl)
+        {
+            cart.RemoveItem(cart.CartItems.First(x => x.Book.BookId == bookId).Book);
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
     }

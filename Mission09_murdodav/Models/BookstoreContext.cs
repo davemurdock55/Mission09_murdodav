@@ -19,7 +19,8 @@ namespace Mission09_murdodav.Models
         {
         }
 
-        public virtual DbSet<Book> Books { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<BookPurchase> BookPurchases { get; set; }
 
     }
 }

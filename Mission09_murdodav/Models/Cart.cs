@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -70,6 +71,7 @@ namespace Mission09_murdodav.Models
     // Making a class for each item in the cart (because there will be multiple of these in the cart)
     public class CartItem
     {
+        [Key]
         public int LineID { get; set; } // making an integer to hold a unique ID for the item in the cart (the ID of the Line Item)
         public Book Book { get; set; } // making an object of type Book called "Book" for the "book" part of the Line Item
         public int Quantity { get; set; } // making an integer to hold the current quantity for the item in the cart (the "quantity" part of the Line Item)

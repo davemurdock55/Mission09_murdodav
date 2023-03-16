@@ -15,6 +15,8 @@ namespace Mission09_murdodav.Models
         {
             ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             SessionCart cart = session?.GetJson<SessionCart>("Cart") ?? new SessionCart();
+            cart.Session = session;
+
             return cart;
         }
 
