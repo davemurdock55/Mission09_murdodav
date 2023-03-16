@@ -3,13 +3,25 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Mission10_murdodav</title>
+    <title>@ViewData["Title"]</title>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
         <div class="bg-primary text-white p-2">
-            <span class="navbar-brand ml-2">Alphabet | BOOK STORE</span>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col navbar-brand">
+                        <a asp-controller="Home" asp-action="Index" class="text-white" style="text-decoration: none">
+                            <i class="fa fa-book-open"></i> Alphabet | Book Store
+                        </a>
+                    </div>
+                    <div class="col-6 mt-1 text-right">
+                        <vc:cart-summary />
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
