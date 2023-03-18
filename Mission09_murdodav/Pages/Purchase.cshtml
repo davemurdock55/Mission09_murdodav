@@ -23,7 +23,7 @@
             <td>@i.Book.Title</td>
             <td>@i.Quantity</td>
             <td>@i.Book.Price</td>
-            <td>@((i.Quantity * i.Book.Price).ToString("c"))</td>
+            <td>@((i.Quantity * i.Book.Price).ToString("C", new System.Globalization.CultureInfo("en-US")))</td>
 
             <td class="text-center">
                 <form method="POST" asp-page-handler="Remove">
@@ -38,7 +38,7 @@
     <tfoot>
         <tr>
             <td colspan="3"><b>Total:</b></td>
-            <td><b>@Model.cart.CalculateTotal().ToString("c")</b></td> @*ToString("c") makes it appear as a "currency"*@
+            <td><b>@Model.cart.CalculateTotal().ToString("C", new System.Globalization.CultureInfo("en-US"))</b></td> @*ToString("C", new System.Globalization.CultureInfo("en-US")) makes it appear as a "currency"*@
         </tr>
     </tfoot>
 

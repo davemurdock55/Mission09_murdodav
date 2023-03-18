@@ -12,7 +12,7 @@
         <small class="navbar-text">
             <b>Your cart:</b>
             @Model.CartItems.Sum(x => x.Quantity) item(s)
-            @Model.CalculateTotal().ToString("c")
+            @Model.CalculateTotal().ToString("C", new System.Globalization.CultureInfo("en-US"))
         </small>
     }
     <a class="btn btn-sm btn-light text-primary navbar-btn" asp-page="/Purchase"
