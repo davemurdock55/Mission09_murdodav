@@ -3,51 +3,62 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Mission09_murdodav</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="/lib/font-awesome/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Mission09_murdodav</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <partial name="_LoginPartial" />
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        </ul>
+        <div class="bg-primary text-white p-2 fixed-top">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col navbar-brand">
+                        <a asp-controller="Home" asp-action="Index" class="text-white" style="text-decoration: none">
+                            <i class="fa fa-book-open"></i> Alphabet | Book Store
+                        </a>
+                    </div>
+                    <div class="col-6 mt-1 text-right">
+                        <vc:cart-summary />
                     </div>
                 </div>
-            </nav>*@
-        <div class="bg-dark text-white p-2">
-            <span class="navbar-brand ml-2">BOOK STORE</span>
+            </div>
         </div>
     </header>
-    <div class="row m-1 p-1">
-        <div id="categories" class="col-3">
-            Put something useful here later
+
+    <div class="m-4 p-1"></div>
+
+    <!-- Hero image -->
+    <div class="p-5 text-center bg-image" style="
+    background-image: url('https://www.denverunionstation.com/content/uploads/2022/10/Tattered-Cover-2-767x500.jpg');
+    height: 400px; ">
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="text-white">
+                    <h1 class="mb-3">Alphabet</h1>
+                    <h4 class="mb-3">Book Store</h4>
+                </div>
+            </div>
         </div>
-        <div class="col-9">
+    </div>
+    <!-- Hero image -->
+
+    <div class="row m-1 p-1">
+
+        <div id="categories" class="col-3">
+            <vc:categories></vc:categories>
+        </div>
+
+        <div class="col-9 min-vh-100">
             @RenderBody()
         </div>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Mission09_murdodav - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container float-left">
+            &copy; 2023 - Mission10_murdodav - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Mission09_murdodav.Pages
 {
-    public class DonateModel : PageModel
+    public class PurchaseConfirmationModel : PageModel
     {
         public void OnGet()
         {

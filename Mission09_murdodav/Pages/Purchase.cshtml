@@ -1,0 +1,51 @@
+﻿@page
+@model Mission09_murdodav.Pages.PurchaseModel
+@{
+    ViewData["Title"] = "Book Cart";
+}
+
+
+<h2 class="text-center m-4">Cart</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model.cart.CartItems)
+        {
+        <tr>
+            <td>@i.Book.Title</td>
+            <td>@i.Quantity</td>
+            <td>@i.Book.Price</td>
+            <td>@((i.Quantity * i.Book.Price).ToString("C", new System.Globalization.CultureInfo("en-US")))</td>
+
+            <td class="text-center">
+                <form method="POST" asp-page-handler="Remove">
+                    <input type="hidden" name="bookId" value="@i.Book.BookId" />
+                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3"><b>Total:</b></td>
+            <td><b>@Model.cart.CalculateTotal().ToString("C", new System.Globalization.CultureInfo("en-US"))</b></td> @*ToString("C", new System.Globalization.CultureInfo("en-US")) makes it appear as a "currency"*@
+        </tr>
+    </tfoot>
+
+</table>
+
+<div class="text-center">
+    @*a button to return the user back to where they came from by referencing the ReturnUrl in the PurchaseModel for this Razor page *@
+    <a class="btn btn-outline-primary text-primary" href="@Model.ReturnUrl">Continue Shopping</a>
+    <a class="btn btn-primary" asp-controller="Purchase" asp-action="Checkout">Checkout</a>
+</div>

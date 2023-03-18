@@ -1,0 +1,49 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Book
+
+<div class="card card-outline-primary m-1 p-1">
+
+
+    <div class="bg-light p-1">
+        <div class="row">
+            <div class="col-10">
+                <h4>@Model.Title</h4>
+            </div>
+            <div class="col-2">
+                <span class="badge badge-pill badge-primary" style="float:right">
+                    @*$@Model.Price*@
+                    @Model.Price.ToString("C", new System.Globalization.CultureInfo("en-US"))
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        <li><b>ISBN:</b> @Model.Isbn</li>
+        <li><b>Author:</b> @Model.Author</li>
+        <li><b>Publisher:</b> @Model.Publisher</li>
+        <li><b>Category:</b> @Model.Category</li>
+        <li><b>Classification:</b> @Model.Classification</li>
+        <li><b>Number of Pages:</b> @Model.PageCount</li>
+    </ul>
+      
+    <form method="POST" asp-page="/Purchase">
+        @*passing the book id as a hidden input*@
+        <input type="hidden" asp-for="@Model.BookId" />
+
+        @*Including in the form the page we are on so when we click the "Go Back" button, we actually go back to exactly where we were*@
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+
+        @*a button to Add to Cart*@
+        <span class="card-text text-center">
+            <button type="submit" class="btn btn-primary btn-sm float-left">Add to Cart</button>
+        </span>
+    </form>
+</div>
+

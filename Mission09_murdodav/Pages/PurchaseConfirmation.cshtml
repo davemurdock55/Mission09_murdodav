@@ -1,0 +1,26 @@
+﻿@page
+@model Mission09_murdodav.Pages.PurchaseConfirmationModel
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="container mt-5">
+    <div class="row">
+
+        <div class="col"></div>
+
+        <div class="col">
+            <div class="card shadow" style="width: 64rem;">
+                <img src="~/img/checkout-books-img-cropped.png" class="card-img-top" />
+                <div class="card-body text-center">
+                    <h2>Thanks for ordering from Alphabet Book Store!</h2>
+                    <h4 class="font-weight-light mt-4">Enjoy your reading! Come back soon!</h4>
+                    <a class="btn btn-primary mt-4" asp-controller="Home" asp-action="Index">Return Home</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col"></div>
+
+    </div>
+</div>
