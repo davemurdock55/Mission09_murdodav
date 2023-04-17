@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Mission09_murdodav.Models;
 using Microsoft.AspNetCore.Http;
 
+
 namespace Mission09_murdodav
 {
     public class Startup
@@ -43,7 +44,7 @@ namespace Mission09_murdodav
             // connecting the DbContext object to the Connection string to connect to the actual database
             services.AddDbContext<BookstoreContext>(options =>
             {
-                options.UseSqlite(Configuration["ConnectionStrings:BookstoreDBConnection"]);
+                options.UseMySql(Configuration["ConnectionStrings:DefaultConnection"]);
             });
 
             // added for the assignment
@@ -89,6 +90,7 @@ namespace Mission09_murdodav
 
             app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
